@@ -17,10 +17,11 @@
 //        假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231,  231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。
 public class Main7 {
     public int reverse(int x) {
+        Double limit = Math.pow(2, 32);
         boolean sign = false;
         int result;
         //清除结尾的0
-        if (x!=0 &&x % 10 == 0) {
+        if (x != 0 && x % 10 == 0) {
             while (x % 10 == 0) {
                 x /= 10;
             }
@@ -34,18 +35,23 @@ public class Main7 {
             stringBuilder.append(cin.charAt(a));
         }
         if (sign) {
-            result =0-Integer.valueOf(stringBuilder.toString().replace("-", ""));
+            try {
+                result = 0 - Integer.valueOf(stringBuilder.toString().replace("-", ""));
+            } catch (NumberFormatException n) {
+                return 0;
+            }
         } else {
-            result = Integer.valueOf(stringBuilder.toString());
-        }
-        if (result>Math.pow(2,32)-1 || result<-Math.pow(2,32)){
-            return 0;
+            try {
+                result = Integer.valueOf(stringBuilder.toString());
+            } catch (NumberFormatException n) {
+                return 0;
+            }
         }
         return result;
     }
 
     public static void main(String[] args) {
         Main7 main7 = new Main7();
-        System.out.println(main7.reverse(0));
+        System.out.println(main7.reverse(9000000));
     }
 }
