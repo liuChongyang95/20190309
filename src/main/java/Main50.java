@@ -21,33 +21,21 @@
  */
 public class Main50 {
     public double myPow(double x, int n) {
-        double param = x;
-        if (n % 2 == 0) {
-            if (n > 0) {
-                for (int i = 2; i <= n/2; i++) {
-                    x *= param;
-                }
-                
-                return x;
-            } else if (n == 0) {
-                return 1d;
-            } else {
-                for (Long i = Long.valueOf(String.valueOf(n).replace("-", "")); i > 1; i--) {
-                    x *= param;
-                }
-                x = 1 / x;
-                return x;
+        double res = 1.0;
+        for(int i = n; i != 0; i /= 2){
+            if(i % 2 != 0){
+                res *= x;
             }
-        } else {
-
+            x *= x;
         }
-
+        return  n < 0 ? 1 / res : res;
     }
 
     public static void main(String[] args) {
         Main50 main50 = new Main50();
-        System.out.println(main50.myPow(0.00001
-                , 2147483647));
-        System.out.println((-2) * (2));
+        System.out.println(main50.myPow(5
+
+                ,
+                        4));
     }
 }
