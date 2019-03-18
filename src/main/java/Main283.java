@@ -16,20 +16,24 @@ public class Main283 {
     public void moveZeroes(int[] nums) {
         int temp;
         for (int a = 0; a < nums.length; a++) {
+            if(nums[a]!=0){
+                continue;
+            }
             for (int b = a + 1; b < nums.length ; b++) {
-                if (nums[a] == 0 && nums[b] != 0) {
-                    temp = nums[b];
-                    nums[b] = nums[a];
-                    nums[a] = temp;
-                    break;
+                if(nums[b]==0){
+                    continue;
                 }
+                temp = nums[b];
+                nums[b] = nums[a];
+                nums[a] = temp;
+                break;
             }
         }
     }
 
     public static void main(String[] args) {
         int[] a = {1, 0, 2, 0, 3, 4, 6};
-        int[] b = {0, 0, 2, 0, 1};
+        int[] b = {2, 0, 1};
         Main283 main283 = new Main283();
         main283.moveZeroes(b);
         System.out.println(Arrays.toString(b));
